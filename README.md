@@ -47,16 +47,43 @@ If the control input changes to AB = 10, then all the gates are restricted excep
  
  
 ### Procedure
-/* write all the steps invloved */
+1.Start the module using module projname(). 2.Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer. 3.Use wire to assign intermediate outputs. 4.Use and,or and not gates to get the desired output. 5.End the module. 6.Generate RTL realization and timing diagrams.
 
 
 
 ### PROGRAM 
-/*
+```
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+Developed by: sarvesh.s
+RegisterNumber: 212222230135
+ 
+MULTIPLEXER:
+module multi (s0,s1,a0,a1,a2,a3,y);
+input s0,s1,a0,a1,a2,a3;
+output y;
+wire a,b,c,d,s0bar,s1bar;
+not (s0bar,s0);
+not (s1bar,s1);
+and (a,s0,s1,a3);
+and (b,s0bar,s1,a2);
+and (c,s0,s1bar,a1);
+and (d,s0bar,s1bar,a0);
+or (y,a,b,c,d);
+endmodule
+
+DEMULTIPLEXER:
+module demul(y0,y1,y2,y3,s0,s1,i);
+input s0,s1,i;
+output y0,y1,y2,y3;
+wire sbar,s1bar;
+nor(sbar,s0);
+nor(s1bar,s1);
+and(y0,i,sbar,s1);
+and(y1,i,sbar,s1bar);
+and(y2,i,s0,s1bar);
+and(y3,i,s0,s1);
+endmodule
+```
 
 
 
@@ -64,7 +91,8 @@ RegisterNumber:
 
 
 ### RTL LOGIC  
-
+![1](https://github.com/sarveshjustin/Exercise-07-Multiplexer-and-De-multiplexer/assets/113497481/f0c6f1b0-ef64-4656-89e8-dfbaddbb0dca)
+![2](https://github.com/sarveshjustin/Exercise-07-Multiplexer-and-De-multiplexer/assets/113497481/1d9aab59-068f-4ce9-9201-2ac5164930a3)
 
 
 
@@ -73,16 +101,9 @@ RegisterNumber:
 
 
 ### TIMING DIGRAMS  
-
-
-
-
-
-### TRUTH TABLE 
-
-
-
-
+![3](https://github.com/sarveshjustin/Exercise-07-Multiplexer-and-De-multiplexer/assets/113497481/7d2e65e7-c99f-4220-aaf0-da0b0e279114)
+![4](https://github.com/sarveshjustin/Exercise-07-Multiplexer-and-De-multiplexer/assets/113497481/17f27edc-8a87-4683-9933-bc57b432d510)
 
 
 ### RESULTS 
+Thus the program to design multiplexer and de-multiplexer is successfully completed.
